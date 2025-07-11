@@ -7,6 +7,17 @@ function showLetter() {
   const letterBox = document.getElementById("letterBox");
   const typedText = document.getElementById("typedText");
 
+  // Putar musik saat user klik tombol
+  const bgMusic = document.getElementById("bgMusic");
+  if (bgMusic) {
+    bgMusic.volume = 1;
+    bgMusic.muted = false;
+    bgMusic.play().catch((err) => {
+      console.warn("Musik tetap gagal diputar:", err);
+    });
+  }
+
+  // Ketik surat setelah 600ms
   setTimeout(() => {
     letterBox.style.display = "block";
     let i = 0;
@@ -15,41 +26,10 @@ function showLetter() {
       if (i < message.length) {
         typedText.innerHTML += message.charAt(i);
         i++;
-        setTimeout(typeWriter, 100); // efek ngetik lambat
+        setTimeout(typeWriter, 160);
       }
     }
 
     typeWriter();
   }, 600);
 }
-
-// Autoplay + fade-in volume agar lolos policy browser
-window.addEventListener("load", () => {
-  const bgMusic = document.getElementById("bgMusic");
-
-  if (bgMusic) {
-    bgMusic.volume = 0;         // mulai dari volume 0
-    bgMusic.muted = false;      // hilangkan mute setelah autoplay jalan
-
-    const tryPlay = () => {
-      bgMusic.play().then(() => {
-        console.log("Musik autoplay berhasil.");
-
-        // Fade-in volume
-        let vol = 0;
-        const fade = setInterval(() => {
-          if (vol < 1) {
-            vol += 0.01;
-            bgMusic.volume = vol;
-          } else {
-            clearInterval(fade);
-          }
-        }, 100); // naik volume tiap 100ms
-      }).catch((err) => {
-        console.warn("Autoplay gagal:", err);
-      });
-    };
-
-    tryPlay();
-  }
-});
