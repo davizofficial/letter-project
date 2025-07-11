@@ -7,27 +7,26 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- Intro Text -->
+    <!-- Intro -->
     <div class="intro" id="introText">
       i hope you read this, even if it's too late.
     </div>
 
-    <!-- Tombol untuk membuka surat -->
+    <!-- Tombol -->
     <button class="btn" onclick="showLetter()">Read it</button>
 
-    <!-- Kotak surat -->
+    <!-- Surat -->
     <div class="letter" id="letterBox">
       <p id="typedText"></p>
       <img src="flower.png" alt="Signature" class="signature" />
     </div>
 
-    <!-- Audio musik -->
-    <audio id="bgMusic" autoplay loop>
+    <!-- Audio autoplay + muted -->
+    <audio id="bgMusic" autoplay loop muted>
       <source src="music.mp3" type="audio/mpeg" />
       Browser Anda tidak mendukung audio.
     </audio>
 
-    <!-- Script -->
     <script src="script.js"></script>
   </body>
 </html>
