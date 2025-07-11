@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A Letter for You</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Intro Text -->
+    <div class="intro" id="introText">
+      i hope you read this, even if it's too late.
+    </div>
+
+    <!-- Tombol untuk membuka surat -->
+    <button class="btn" onclick="showLetter()">Read it</button>
+
+    <!-- Kotak surat -->
+    <div class="letter" id="letterBox">
+      <p id="typedText"></p>
+      <img src="flower.png" alt="Signature" class="signature" />
+    </div>
+
+    <!-- Backsound musik -->
+    <audio id="bgMusic" autoplay loop>
+      <source src="music.mp3" type="audio/mpeg" />
+      Browser Anda tidak mendukung pemutar audio.
+    </audio>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+  </body>
+</html>
