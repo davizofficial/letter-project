@@ -4,9 +4,10 @@ function showLetter() {
   document.getElementById("introText").style.opacity = 0;
   document.querySelector(".btn").style.display = "none";
 
+  const letterBox = document.getElementById("letterBox");
+  const typedText = document.getElementById("typedText");
+
   setTimeout(() => {
-    const letterBox = document.getElementById("letterBox");
-    const typedText = document.getElementById("typedText");
     letterBox.style.display = "block";
     let i = 0;
 
@@ -14,20 +15,33 @@ function showLetter() {
       if (i < message.length) {
         typedText.innerHTML += message.charAt(i);
         i++;
-        setTimeout(typeWriter, 150);
+        setTimeout(typeWriter, 160);
       }
     }
 
     typeWriter();
   }, 600);
+
+  // Play musik jika autoplay diblokir, paksa play saat tombol diklik
+  const bgMusic = document.getElementById("bgMusic");
+  if (bgMusic && bgMusic.paused) {
+    bgMusic.play().catch((err) => {
+      console.warn("Musik tidak autoplay. Memutar setelah interaksi.");
+    });
+  }
 }
 
-// Paksa musik autoplay saat halaman selesai dimuat
+// Coba autoplay saat halaman dimuat (jika berhasil langsung play)
 window.addEventListener("load", () => {
   const bgMusic = document.getElementById("bgMusic");
   if (bgMusic) {
-    bgMusic.play().catch((err) => {
-      console.warn("Autoplay diblokir browser. Akan diputar setelah interaksi.");
+    bgMusic.volume = 1;
+    bgMusic.muted = false;
+
+    bgMusic.play().then(() => {
+      console.log("Musik diputar otomatis.");
+    }).catch((err) => {
+      console.warn("Autoplay diblokir. Akan diputar saat klik tombol.");
     });
   }
 });
